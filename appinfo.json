@@ -1,0 +1,351 @@
+{
+    "appKeys": {
+        "background": 6,
+        "bluetoothvibe": 1,
+        "hourlyvibe": 2,
+        "humidity": 4,
+        "icon": 0,
+        "sunset": 5,
+        "temperature": 3
+    },
+    "capabilities": [
+        "location",
+        "configurable"
+    ],
+    "companyName": "chops",
+    "longName": "themes",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "images/themes-menu.png",
+                "menuIcon": true,
+                "name": "IMAGE_MENU_ICON",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/polygons5.png",
+                "name": "IMAGE_BG32",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/abstract6.png",
+                "name": "IMAGE_BG24",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/space6.png",
+                "name": "IMAGE_BG31",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/nature6.png",
+                "name": "IMAGE_BG30",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "fonts/HelveticaNeue-Thin.otf",
+                "name": "FONT_CUSTOM_17",
+                "type": "font"
+            },
+            {
+                "file": "fonts/HelveticaNeue-Thin.otf",
+                "name": "FONT_CUSTOM_16",
+                "type": "font"
+            },
+            {
+                "characterRegex": "[0-9: ]",
+                "file": "fonts/HelveticaNeue.ttf",
+                "name": "FONT_REGULAR_44",
+                "type": "font"
+            },
+            {
+                "file": "images/icon_battery_charge.png",
+                "name": "IMAGE_BATTERY_CHARGE",
+                "type": "png"
+            },
+            {
+                "file": "images/icon_batt.png",
+                "name": "IMAGE_BATT",
+                "type": "png"
+            },
+            {
+                "file": "images/nature5.png",
+                "name": "IMAGE_BG10",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/space2.png",
+                "name": "IMAGE_BG28",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/space5.png",
+                "name": "IMAGE_BG27",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/space4.png",
+                "name": "IMAGE_BG26",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/polygons4.png",
+                "name": "IMAGE_BG23",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/polygons3.png",
+                "name": "IMAGE_BG22",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/space3.png",
+                "name": "IMAGE_BG20",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/polygons2.png",
+                "name": "IMAGE_BG19",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/abstract5.png",
+                "name": "IMAGE_BG17",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/abstract4.png",
+                "name": "IMAGE_BG16",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/abstract3.png",
+                "name": "IMAGE_BG15",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/abstract2.png",
+                "name": "IMAGE_BG14",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/abstract1.png",
+                "name": "IMAGE_BG12",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/nature4.png",
+                "name": "IMAGE_BG9",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/nature3.png",
+                "name": "IMAGE_BG7",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/nature2.png",
+                "name": "IMAGE_BG5",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/nature1.png",
+                "name": "IMAGE_BG6",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/polygons1.png",
+                "name": "IMAGE_BG2",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/space1.png",
+                "name": "IMAGE_BG1",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "images/FOG.png",
+                "name": "FOG",
+                "type": "png"
+            },
+            {
+                "file": "images/45.png",
+                "name": "NA",
+                "type": "png"
+            },
+            {
+                "file": "images/27.png",
+                "name": "STORM",
+                "type": "png"
+            },
+            {
+                "file": "images/25.png",
+                "name": "CLOUDY",
+                "type": "png"
+            },
+            {
+                "file": "images/24.png",
+                "name": "HAIL",
+                "type": "png"
+            },
+            {
+                "file": "images/23.png",
+                "name": "SNOW",
+                "type": "png"
+            },
+            {
+                "file": "images/18.png",
+                "name": "RAIN",
+                "type": "png"
+            },
+            {
+                "file": "images/14.png",
+                "name": "CLOUD",
+                "type": "png"
+            },
+            {
+                "file": "images/13.png",
+                "name": "HAZE",
+                "type": "png"
+            },
+            {
+                "file": "images/9.png",
+                "name": "PARTLY_CLOUDY_NIGHT",
+                "type": "png"
+            },
+            {
+                "file": "images/8.png",
+                "name": "PARTLY_CLOUDY_DAY",
+                "type": "png"
+            },
+            {
+                "file": "images/7.png",
+                "name": "COLD",
+                "type": "png"
+            },
+            {
+                "file": "images/6.png",
+                "name": "WINDY",
+                "type": "png"
+            },
+            {
+                "file": "images/3.png",
+                "name": "CLEAR_NIGHT",
+                "type": "png"
+            },
+            {
+                "file": "images/2.png",
+                "name": "CLEAR_DAY",
+                "type": "png"
+            }
+        ]
+    },
+    "sdkVersion": "3",
+    "shortName": "themes",
+    "targetPlatforms": [
+        "basalt",
+        "chalk"
+    ],
+    "uuid": "a78f1062-c85b-466a-aa82-f43ced1e2837",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": true
+    }
+}
