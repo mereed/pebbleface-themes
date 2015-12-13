@@ -32,6 +32,15 @@ static const uint32_t WEATHER_ICONS[] = {
   RESOURCE_ID_NA,
 };
 
+enum key {
+  ICON_KEY = 0x0,
+  BLUETOOTHVIBE_KEY = 0x1,
+  HOURLYVIBE_KEY = 0x2,
+  TEMP_KEY = 0x3,
+  CONDITION_KEY = 0x4,
+//  PRESSURE_KEY = 0x5,
+  BACKGROUND_KEY = 0x5
+};
 
 static AppSync sync;
 static uint8_t sync_buffer[128];
@@ -44,42 +53,30 @@ static bool appStarted = false;
 
 static uint8_t batteryPercent;
 
-static GBitmap *battery_image;
+static GBitmap *battery_image = NULL;
 static BitmapLayer *battery_image_layer;
 static BitmapLayer *battery_layer;
-
-enum {
-  ICON_KEY = 0x0,
-  BLUETOOTHVIBE_KEY = 0x1,
-  HOURLYVIBE_KEY = 0x2,
-  TEMP_KEY = 0x3,
-  CONDITION_KEY = 0x4,
-  PRESSURE_KEY = 0x5,
-  BACKGROUND_KEY = 0x6
-};
-
-static GBitmap *background_image;
-static BitmapLayer *background_layer;
-
-BitmapLayer *icon_layer;
-GBitmap *icon_bitmap = NULL;
 
 Window *window;
 static Layer *window_layer;
 
-Layer* weather_holder;
-TextLayer *temp_layer;
-TextLayer *condition_layer;
+static GBitmap *background_image;
+static BitmapLayer *background_layer = NULL;
+
+BitmapLayer *icon_layer;
+GBitmap *icon_bitmap = NULL;
 
 TextLayer *layer_date_text;
 TextLayer *layer_date_text2;
 TextLayer *layer_time_text;
 TextLayer *layer_time_text2;
 
+TextLayer *temp_layer;
+TextLayer *condition_layer;
+
 static GFont time_font;
 static GFont date_font;
 static GFont temp_font;
-static GFont sunset_font;
 
 int cur_day = -1;
 
@@ -87,9 +84,6 @@ int charge_percent = 0;
 
 static int s_random = 20;
 static int temp_random;
-
-
-static void handle_minute_tick(struct tm *tick_time, TimeUnits units_changed);
 
 
 void theme_choice() {
@@ -129,14 +123,12 @@ void theme_choice() {
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG30);
          }
 
-
 	   if (background_image != NULL) {
 		bitmap_layer_set_bitmap(background_layer, background_image);
 		layer_set_hidden(bitmap_layer_get_layer(background_layer), false);
 		layer_mark_dirty(bitmap_layer_get_layer(background_layer));
     }
-
-	}
+}
 
 	    break;
 		
@@ -170,17 +162,15 @@ void theme_choice() {
          } else if(s_random == 4){
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG27);
          } else if(s_random == 5){
- 				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG27);
+ 				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG31);
          }
-			
-			
+					
 	   if (background_image != NULL) {
 		bitmap_layer_set_bitmap(background_layer, background_image);
 		layer_set_hidden(bitmap_layer_get_layer(background_layer), false);
 		layer_mark_dirty(bitmap_layer_get_layer(background_layer));
     }
-
-	}	
+}	
 		
 	    break;
 
@@ -215,7 +205,6 @@ void theme_choice() {
          } else if(s_random == 5){
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG24);
          } 
-			
 			
 	   if (background_image != NULL) {
 		bitmap_layer_set_bitmap(background_layer, background_image);
@@ -252,8 +241,8 @@ void theme_choice() {
          } else if(s_random == 3){
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG23);
          } else if(s_random == 4){
- 				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG24);
-         } 
+ 				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG32);
+         }
 			
 	   if (background_image != NULL) {
 		bitmap_layer_set_bitmap(background_layer, background_image);
@@ -265,20 +254,16 @@ void theme_choice() {
 	}
 }
 	
-	
 void change_battery_icon(bool charging) {
 
   if(charging) {
     battery_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATTERY_CHARGE);
-  }
-  else {
+  }  else {
     battery_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT);
   }  
   bitmap_layer_set_bitmap(battery_image_layer, battery_image);
   layer_mark_dirty(bitmap_layer_get_layer(battery_image_layer));
 }
-
-
 
 static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tuple, const Tuple* old_tuple, void* context) {
   switch (key) {
@@ -287,9 +272,9 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
       text_layer_set_text(condition_layer, new_tuple->value->cstring);
     break;
 
-	case PRESSURE_KEY:
+	//case PRESSURE_KEY:
     //  text_layer_set_text(layer_sunset_text, new_tuple->value->cstring);
-    break;
+    //break;
 	  
 	case TEMP_KEY:
       text_layer_set_text(temp_layer, new_tuple->value->cstring);
@@ -317,7 +302,7 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
 	case BACKGROUND_KEY:
       background = new_tuple->value->uint8;
 	  persist_write_bool(BACKGROUND_KEY, background);	  
-		theme_choice();
+	  theme_choice();
 	  break; 
 	  
   }
@@ -356,9 +341,9 @@ if (!connected) {
 	
      } else {
 	
-        layer_set_hidden(text_layer_get_layer(temp_layer), false);
-        layer_set_hidden(bitmap_layer_get_layer(icon_layer), false);
-        layer_set_hidden(text_layer_get_layer(condition_layer), false);	
+       layer_set_hidden(text_layer_get_layer(temp_layer), false);
+       layer_set_hidden(bitmap_layer_get_layer(icon_layer), false);
+       layer_set_hidden(text_layer_get_layer(condition_layer), false);	
 	
 	}
 	
@@ -442,35 +427,26 @@ void hourvibe (struct tm *tick_time) {
   }
 }
 
-
 void handle_minute_tick(struct tm *tick_time, TimeUnits units_changed) {
     update_time(tick_time);
 	
 if (units_changed & HOUR_UNIT) {
+	
 	theme_choice();
     hourvibe(tick_time);
+	
   }
 
-//if (units_changed & MINUTE_UNIT) {
+if (units_changed & MINUTE_UNIT) {
 //	theme_choice();
-//
-//  }
+	
+  }
 	
 }
 
-void handle_init(void) {
+static void window_load(Window *window) {
+  Layer *window_layer = window_get_root_layer(window);
 	
-	const int inbound_size = 128;
-    const int outbound_size = 128;
-    app_message_open(inbound_size, outbound_size);  
-	
-    window = window_create();
-    window_stack_push(window, true);
- 
-    window_layer = window_get_root_layer(window);
-
-  window_set_background_color(window, GColorWhite);
-
   background_image = gbitmap_create_with_resource( RESOURCE_ID_IMAGE_BG6 );
   background_layer = bitmap_layer_create( layer_get_frame( window_layer ) );
   bitmap_layer_set_bitmap( background_layer, background_image );
@@ -534,16 +510,16 @@ void handle_init(void) {
     text_layer_set_text_color(condition_layer, GColorBlack);
  
 
-// composing layers
+	// composing layers
     layer_add_child(window_layer, text_layer_get_layer(layer_date_text2));
     layer_add_child(window_layer, text_layer_get_layer(layer_time_text2));
     layer_add_child(window_layer, text_layer_get_layer(layer_date_text));
     layer_add_child(window_layer, text_layer_get_layer(layer_time_text));
 	
-
     layer_add_child(window_layer, text_layer_get_layer(condition_layer));
 	layer_add_child(window_layer, text_layer_get_layer(temp_layer));
 	
+
 #ifdef PBL_PLATFORM_CHALK
   icon_layer = bitmap_layer_create(GRect(75, 71, 28, 28));
 #else
@@ -551,31 +527,96 @@ void handle_init(void) {
 #endif
   layer_add_child(window_layer, bitmap_layer_get_layer(icon_layer));
 
-	
+
   battery_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT);
   GRect bitmap_bounds_batt = gbitmap_get_bounds(battery_image);
-	
 #ifdef PBL_PLATFORM_CHALK
   GRect frame_batt = GRect(82, 4, bitmap_bounds_batt.size.w, bitmap_bounds_batt.size.h);
 #else
   GRect frame_batt = GRect(67, 4, bitmap_bounds_batt.size.w, bitmap_bounds_batt.size.h);
 #endif
-	
   battery_layer = bitmap_layer_create(frame_batt);
   battery_image_layer = bitmap_layer_create(frame_batt);
   bitmap_layer_set_bitmap(battery_image_layer, battery_image);
   layer_set_update_proc(bitmap_layer_get_layer(battery_layer), battery_layer_update_callback);
   layer_add_child(window_layer, bitmap_layer_get_layer(battery_image_layer));
   layer_add_child(window_layer, bitmap_layer_get_layer(battery_layer));
-	
+
     // handlers
     battery_state_service_subscribe(&update_battery_state);
     bluetooth_connection_service_subscribe(&toggle_bluetooth);
     tick_timer_service_subscribe(MINUTE_UNIT, handle_minute_tick);
 
+    appStarted = true;
+	
+	// update the battery on launch
+    update_battery_state(battery_state_service_peek());
+	
+    // draw first frame
+    force_update();
+	
+}
+
+static void window_unload(Window *window) {
+
+  layer_remove_from_parent(bitmap_layer_get_layer(background_layer));
+  bitmap_layer_destroy(background_layer);
+  gbitmap_destroy(background_image);
+  background_image = NULL;
+	
+  layer_remove_from_parent(bitmap_layer_get_layer(icon_layer));
+  bitmap_layer_destroy(icon_layer);
+  gbitmap_destroy(icon_bitmap);
+  icon_bitmap = NULL;
+	
+  layer_remove_from_parent(bitmap_layer_get_layer(battery_layer));
+  bitmap_layer_destroy(battery_layer);
+  gbitmap_destroy(battery_image);
+  battery_image = NULL;
+  
+  layer_remove_from_parent(bitmap_layer_get_layer(battery_image_layer));
+  bitmap_layer_destroy(battery_image_layer);
+	
+  text_layer_destroy( layer_time_text );
+  text_layer_destroy( layer_date_text );
+  text_layer_destroy( layer_time_text2 );
+  text_layer_destroy( layer_date_text2 );
+  text_layer_destroy( temp_layer );
+  text_layer_destroy( condition_layer );
+	
+  fonts_unload_custom_font(time_font);
+  fonts_unload_custom_font(date_font);
+  fonts_unload_custom_font(temp_font);
+	
+  layer_remove_from_parent(window_layer);
+  layer_destroy(window_layer);
+	
+}
+
+void main_window_push() {
+  window = window_create();
+  window_set_background_color(window, GColorWhite);
+  window_set_window_handlers(window, (WindowHandlers) {
+    .load = window_load,
+    .unload = window_unload,
+  });
+  window_stack_push(window, true);
+}
+
+static void init() {
+  main_window_push();
+
+  tick_timer_service_subscribe(MINUTE_UNIT, handle_minute_tick);
+  battery_state_service_subscribe(&update_battery_state);
+  bluetooth_connection_service_subscribe(&toggle_bluetooth);
+	
+	const int inbound_size = 128;
+    const int outbound_size = 128;
+    app_message_open(inbound_size, outbound_size);  
+	
 	Tuplet initial_values[] = {
 	TupletCString(CONDITION_KEY, ""),
-	TupletCString(PRESSURE_KEY, ""),
+//	TupletCString(PRESSURE_KEY, ""),
 	TupletCString(TEMP_KEY, ""),
     TupletInteger(ICON_KEY, (uint8_t) 14),
     TupletInteger(BLUETOOTHVIBE_KEY, persist_read_bool(BLUETOOTHVIBE_KEY)),
@@ -587,51 +628,23 @@ void handle_init(void) {
     app_sync_init(&sync, sync_buffer, sizeof(sync_buffer), initial_values, ARRAY_LENGTH(initial_values),
       sync_tuple_changed_callback, NULL, NULL);
    
-    appStarted = true;
-	
-	// update the battery on launch
-    update_battery_state(battery_state_service_peek());
-	
-    // draw first frame
-    force_update();
-
 }
 
+
 void handle_deinit(void) {
+	
   app_sync_deinit(&sync);
 
   tick_timer_service_unsubscribe();
   bluetooth_connection_service_unsubscribe();
   battery_state_service_unsubscribe();
 	
-  layer_remove_from_parent(bitmap_layer_get_layer(background_layer));
-  bitmap_layer_destroy(background_layer);
-  gbitmap_destroy(background_image);
-  background_image = NULL;
-	
-  text_layer_destroy( layer_time_text );
-  text_layer_destroy( layer_date_text );
-  text_layer_destroy( layer_time_text2 );
-  text_layer_destroy( layer_date_text2 );
-  text_layer_destroy( temp_layer );
-  text_layer_destroy( condition_layer );
-  
-  layer_remove_from_parent(bitmap_layer_get_layer(icon_layer));
-  bitmap_layer_destroy(icon_layer);
-  gbitmap_destroy(icon_bitmap);
-  icon_bitmap = NULL;
-	
-  fonts_unload_custom_font(time_font);
-  fonts_unload_custom_font(date_font);
-  fonts_unload_custom_font(temp_font);
-  fonts_unload_custom_font(sunset_font);
-	
   window_destroy(window);
 
 }
 
 int main(void) {
-    handle_init();
+    init();
     app_event_loop();
     handle_deinit();
 }

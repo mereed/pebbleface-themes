@@ -95,7 +95,7 @@ function getWeatherFromLatLong(latitude, longitude) {
         console.log("Error");
       }
     }
-  }
+  };
   req.send(null);
 }
 
@@ -120,7 +120,7 @@ function getWeatherFromLocation(location_name) {
         console.log("Error");
       }
     }
-  }
+  };
   req.send(null);
 }
 
@@ -140,20 +140,20 @@ function getWeatherFromWoeid(woeid) {
         if (response) {
           var condition = response.query.results.channel.item.condition;
 		  var atmosphere = response.query.results.channel.atmosphere;
-		  var astronomy = response.query.results.channel.astronomy;
+//		  var astronomy = response.query.results.channel.astronomy;
 
           temperature = condition.temp + (celsius ? "\u00B0" : "\u00B0");
 		  humidity = atmosphere.humidity +("\u0025");
-		  sunset = astronomy.sunset;
+//		  sunset = astronomy.sunset;
           icon = imageId[condition.code];
            console.log("temp " + temperature);
            console.log("icon " + icon);
            console.log("humidity " + humidity);
-           console.log("sunset " + sunset);
+//           console.log("sunset " + sunset);
           Pebble.sendAppMessage({
             "icon" : icon,
 			"humidity" : humidity,
-			"sunset" : sunset,
+//			"sunset" : sunset,
             "temperature" : temperature,
 			"background" : options["background"],
 			"bluetoothvibe" : (options["bluetoothvibe"] == "true" ? 1 : 0),
@@ -164,7 +164,7 @@ function getWeatherFromWoeid(woeid) {
         console.log("Error");
       }
     }
-  }
+  };
   req.send(null);
 }
 
@@ -190,8 +190,8 @@ function locationError(err) {
   Pebble.sendAppMessage({
     "icon":11,
     "temperature":"   ",
-	"humidity":"    ",
-	"sunset":"    "
+	"humidity":"    "
+//	"sunset":"    "
   });
 }
 
@@ -225,6 +225,6 @@ Pebble.addEventListener("ready", function(e) {
   setInterval(function() {
     //console.log("timer fired");
     updateWeather();
-  }, 900000); // 15 minutes
+  }, 180000); // 30 minutes
   console.log(e.type);
 });
