@@ -38,7 +38,6 @@ enum key {
   HOURLYVIBE_KEY = 0x2,
   TEMP_KEY = 0x3,
   CONDITION_KEY = 0x4,
-//  PRESSURE_KEY = 0x5,
   BACKGROUND_KEY = 0x5
 };
 
@@ -60,8 +59,8 @@ static BitmapLayer *battery_layer;
 Window *window;
 static Layer *window_layer;
 
-static GBitmap *background_image;
-static BitmapLayer *background_layer = NULL;
+GBitmap *background_image = NULL;
+static BitmapLayer *background_layer;
 
 BitmapLayer *icon_layer;
 GBitmap *icon_bitmap = NULL;
@@ -82,7 +81,7 @@ int cur_day = -1;
 
 int charge_percent = 0;
 
-static int s_random = 20;
+static int s_random = 6;
 static int temp_random;
 
 
@@ -127,7 +126,7 @@ void theme_choice() {
 		bitmap_layer_set_bitmap(background_layer, background_image);
 		layer_set_hidden(bitmap_layer_get_layer(background_layer), false);
 		layer_mark_dirty(bitmap_layer_get_layer(background_layer));
-    }
+	   }
 }
 
 	    break;
@@ -215,14 +214,14 @@ void theme_choice() {
 	    break;
 		
 		case 3:  // shapes
-		if(s_random == 5){
+		if(s_random == 6){
 			s_random = 0;
 		} else {
 
-			temp_random = rand() % 5;
+			temp_random = rand() % 6;
 
 			while(temp_random == s_random){
-			    temp_random = rand() % 5;
+			    temp_random = rand() % 6;
 		    }
 
 		    s_random = temp_random;
@@ -242,6 +241,8 @@ void theme_choice() {
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG23);
          } else if(s_random == 4){
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG32);
+         }else if(s_random == 5){
+ 				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG33);
          }
 			
 	   if (background_image != NULL) {
@@ -256,7 +257,11 @@ void theme_choice() {
 	
 void change_battery_icon(bool charging) {
 
-  if(charging) {
+if (battery_image) {
+    gbitmap_destroy(battery_image);
+    battery_image = NULL;
+  }
+	if(charging) {
     battery_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATTERY_CHARGE);
   }  else {
     battery_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT);
@@ -266,15 +271,15 @@ void change_battery_icon(bool charging) {
 }
 
 static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tuple, const Tuple* old_tuple, void* context) {
-  switch (key) {
+	if(new_tuple==NULL || new_tuple->value==NULL) {
+		return;
+	}
+	
+	switch (key) {
 	  
 	case CONDITION_KEY:
       text_layer_set_text(condition_layer, new_tuple->value->cstring);
     break;
-
-	//case PRESSURE_KEY:
-    //  text_layer_set_text(layer_sunset_text, new_tuple->value->cstring);
-    //break;
 	  
 	case TEMP_KEY:
       text_layer_set_text(temp_layer, new_tuple->value->cstring);
@@ -284,26 +289,25 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
       if (icon_bitmap) {
         gbitmap_destroy(icon_bitmap);
       }
-      icon_bitmap = gbitmap_create_with_resource(
-          WEATHER_ICONS[new_tuple->value->uint8]);
+      icon_bitmap = gbitmap_create_with_resource(WEATHER_ICONS[new_tuple->value->uint8]);
       bitmap_layer_set_bitmap(icon_layer, icon_bitmap);
-      break;
+    break;
 	  
     case BLUETOOTHVIBE_KEY:
       bluetoothvibe = new_tuple->value->uint8 != 0;
 	  persist_write_bool(BLUETOOTHVIBE_KEY, bluetoothvibe);
-      break;      
+    break;      
 	  
     case HOURLYVIBE_KEY:
       hourlyvibe = new_tuple->value->uint8 != 0;
 	  persist_write_bool(HOURLYVIBE_KEY, hourlyvibe);	  
-      break;	  
+    break;	  
 	
 	case BACKGROUND_KEY:
       background = new_tuple->value->uint8;
 	  persist_write_bool(BACKGROUND_KEY, background);	  
-	  theme_choice();
-	  break; 
+	  theme_choice(); 
+	break; 
 	  
   }
 }
@@ -430,18 +434,16 @@ void hourvibe (struct tm *tick_time) {
 void handle_minute_tick(struct tm *tick_time, TimeUnits units_changed) {
     update_time(tick_time);
 	
-if (units_changed & HOUR_UNIT) {
-	
+if (units_changed & HOUR_UNIT) {	
 	theme_choice();
     hourvibe(tick_time);
-	
   }
 
-if (units_changed & MINUTE_UNIT) {
-//	theme_choice();
+// added this for testing
 	
-  }
-	
+//if (units_changed & MINUTE_UNIT) {
+//	theme_choice(); 
+ // }
 }
 
 static void window_load(Window *window) {
@@ -561,8 +563,10 @@ static void window_unload(Window *window) {
 
   layer_remove_from_parent(bitmap_layer_get_layer(background_layer));
   bitmap_layer_destroy(background_layer);
-  gbitmap_destroy(background_image);
-  background_image = NULL;
+
+	if (background_image != NULL) {
+		gbitmap_destroy(background_image);
+    }
 	
   layer_remove_from_parent(bitmap_layer_get_layer(icon_layer));
   bitmap_layer_destroy(icon_layer);
@@ -606,30 +610,25 @@ void main_window_push() {
 static void init() {
   main_window_push();
 
-  tick_timer_service_subscribe(MINUTE_UNIT, handle_minute_tick);
-  battery_state_service_subscribe(&update_battery_state);
-  bluetooth_connection_service_subscribe(&toggle_bluetooth);
-	
-	const int inbound_size = 128;
-    const int outbound_size = 128;
-    app_message_open(inbound_size, outbound_size);  
-	
-	Tuplet initial_values[] = {
+   Tuplet initial_values[] = {
 	TupletCString(CONDITION_KEY, ""),
-//	TupletCString(PRESSURE_KEY, ""),
 	TupletCString(TEMP_KEY, ""),
     TupletInteger(ICON_KEY, (uint8_t) 14),
     TupletInteger(BLUETOOTHVIBE_KEY, persist_read_bool(BLUETOOTHVIBE_KEY)),
     TupletInteger(HOURLYVIBE_KEY, persist_read_bool(HOURLYVIBE_KEY)),
-    TupletInteger(BACKGROUND_KEY, persist_read_bool(BACKGROUND_KEY)),
-		
+    TupletInteger(BACKGROUND_KEY, persist_read_bool(BACKGROUND_KEY)),	
   };
   
-    app_sync_init(&sync, sync_buffer, sizeof(sync_buffer), initial_values, ARRAY_LENGTH(initial_values),
+	app_message_open(128, 128);
+
+	app_sync_init(&sync, sync_buffer, sizeof(sync_buffer), initial_values, ARRAY_LENGTH(initial_values),
       sync_tuple_changed_callback, NULL, NULL);
    
+  tick_timer_service_subscribe(MINUTE_UNIT, handle_minute_tick);
+  battery_state_service_subscribe(&update_battery_state);
+  bluetooth_connection_service_subscribe(&toggle_bluetooth);
+	
 }
-
 
 void handle_deinit(void) {
 	

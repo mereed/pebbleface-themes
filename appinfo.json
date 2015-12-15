@@ -17,6 +17,15 @@
     "resources": {
         "media": [
             {
+                "file": "images/polygons6-chalk.png",
+                "name": "IMAGE_BG33",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "png"
+            },
+            {
                 "file": "images/themes-menu.png",
                 "menuIcon": true,
                 "name": "IMAGE_MENU_ICON",
@@ -343,7 +352,7 @@
         "chalk"
     ],
     "uuid": "a78f1062-c85b-466a-aa82-f43ced1e2837",
-    "versionLabel": "1.3",
+    "versionLabel": "1.4",
     "watchapp": {
         "watchface": true
     }
