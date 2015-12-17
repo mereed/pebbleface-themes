@@ -17,15 +17,6 @@
     "resources": {
         "media": [
             {
-                "file": "images/polygons6-chalk.png",
-                "name": "IMAGE_BG33",
-                "targetPlatforms": [
-                    "basalt",
-                    "chalk"
-                ],
-                "type": "png"
-            },
-            {
                 "file": "images/themes-menu.png",
                 "menuIcon": true,
                 "name": "IMAGE_MENU_ICON",
@@ -33,7 +24,119 @@
                     "basalt",
                     "chalk"
                 ],
-                "type": "png"
+                "type": "bitmap"
+            },
+            {
+                "file": "images/space7.png",
+                "name": "IMAGE_BG36",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
+                "file": "images/abstract7.png",
+                "name": "IMAGE_BG39",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
+                "file": "images/nature7.png",
+                "name": "IMAGE_BG34",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
+                "file": "images/abstract2.png",
+                "name": "IMAGE_BG14",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
+                "file": "images/polygons6.png",
+                "name": "IMAGE_BG33",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
+                "file": "images/abstract5.png",
+                "name": "IMAGE_BG17",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
+                "file": "images/nature5.png",
+                "name": "IMAGE_BG10",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
+                "file": "images/nature4.png",
+                "name": "IMAGE_BG9",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
+                "file": "images/45.png",
+                "name": "NA",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/14.png",
+                "name": "CLOUD",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/FOG.png",
+                "name": "FOG",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/13.png",
+                "name": "HAZE",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/25.png",
+                "name": "CLOUDY",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/8.png",
+                "name": "PARTLY_CLOUDY_DAY",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/3.png",
+                "name": "CLEAR_NIGHT",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/9.png",
+                "name": "PARTLY_CLOUDY_NIGHT",
+                "type": "bitmap"
             },
             {
                 "file": "images/polygons5.png",
@@ -42,7 +145,7 @@
                     "basalt",
                     "chalk"
                 ],
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/abstract6.png",
@@ -51,7 +154,7 @@
                     "basalt",
                     "chalk"
                 ],
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/space6.png",
@@ -60,7 +163,7 @@
                     "basalt",
                     "chalk"
                 ],
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/nature6.png",
@@ -69,7 +172,7 @@
                     "basalt",
                     "chalk"
                 ],
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "fonts/HelveticaNeue-Thin.otf",
@@ -90,21 +193,12 @@
             {
                 "file": "images/icon_battery_charge.png",
                 "name": "IMAGE_BATTERY_CHARGE",
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/icon_batt.png",
                 "name": "IMAGE_BATT",
-                "type": "png"
-            },
-            {
-                "file": "images/nature5.png",
-                "name": "IMAGE_BG10",
-                "targetPlatforms": [
-                    "basalt",
-                    "chalk"
-                ],
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/space2.png",
@@ -113,7 +207,7 @@
                     "basalt",
                     "chalk"
                 ],
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/space5.png",
@@ -122,7 +216,7 @@
                     "basalt",
                     "chalk"
                 ],
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/space4.png",
@@ -131,7 +225,7 @@
                     "basalt",
                     "chalk"
                 ],
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/polygons4.png",
@@ -140,7 +234,7 @@
                     "basalt",
                     "chalk"
                 ],
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/polygons3.png",
@@ -149,7 +243,7 @@
                     "basalt",
                     "chalk"
                 ],
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/space3.png",
@@ -158,7 +252,7 @@
                     "basalt",
                     "chalk"
                 ],
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/polygons2.png",
@@ -167,16 +261,7 @@
                     "basalt",
                     "chalk"
                 ],
-                "type": "png"
-            },
-            {
-                "file": "images/abstract5.png",
-                "name": "IMAGE_BG17",
-                "targetPlatforms": [
-                    "basalt",
-                    "chalk"
-                ],
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/abstract4.png",
@@ -185,7 +270,7 @@
                     "basalt",
                     "chalk"
                 ],
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/abstract3.png",
@@ -194,16 +279,7 @@
                     "basalt",
                     "chalk"
                 ],
-                "type": "png"
-            },
-            {
-                "file": "images/abstract2.png",
-                "name": "IMAGE_BG14",
-                "targetPlatforms": [
-                    "basalt",
-                    "chalk"
-                ],
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/abstract1.png",
@@ -212,16 +288,7 @@
                     "basalt",
                     "chalk"
                 ],
-                "type": "png"
-            },
-            {
-                "file": "images/nature4.png",
-                "name": "IMAGE_BG9",
-                "targetPlatforms": [
-                    "basalt",
-                    "chalk"
-                ],
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/nature3.png",
@@ -230,7 +297,7 @@
                     "basalt",
                     "chalk"
                 ],
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/nature2.png",
@@ -239,7 +306,7 @@
                     "basalt",
                     "chalk"
                 ],
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/nature1.png",
@@ -248,7 +315,7 @@
                     "basalt",
                     "chalk"
                 ],
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/polygons1.png",
@@ -257,7 +324,7 @@
                     "basalt",
                     "chalk"
                 ],
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/space1.png",
@@ -266,82 +333,42 @@
                     "basalt",
                     "chalk"
                 ],
-                "type": "png"
-            },
-            {
-                "file": "images/FOG.png",
-                "name": "FOG",
-                "type": "png"
-            },
-            {
-                "file": "images/45.png",
-                "name": "NA",
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/27.png",
                 "name": "STORM",
-                "type": "png"
-            },
-            {
-                "file": "images/25.png",
-                "name": "CLOUDY",
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/24.png",
                 "name": "HAIL",
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/23.png",
                 "name": "SNOW",
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/18.png",
                 "name": "RAIN",
-                "type": "png"
-            },
-            {
-                "file": "images/14.png",
-                "name": "CLOUD",
-                "type": "png"
-            },
-            {
-                "file": "images/13.png",
-                "name": "HAZE",
-                "type": "png"
-            },
-            {
-                "file": "images/9.png",
-                "name": "PARTLY_CLOUDY_NIGHT",
-                "type": "png"
-            },
-            {
-                "file": "images/8.png",
-                "name": "PARTLY_CLOUDY_DAY",
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/7.png",
                 "name": "COLD",
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/6.png",
                 "name": "WINDY",
-                "type": "png"
-            },
-            {
-                "file": "images/3.png",
-                "name": "CLEAR_NIGHT",
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/2.png",
                 "name": "CLEAR_DAY",
-                "type": "png"
+                "type": "bitmap"
             }
         ]
     },
@@ -352,7 +379,7 @@
         "chalk"
     ],
     "uuid": "a78f1062-c85b-466a-aa82-f43ced1e2837",
-    "versionLabel": "1.4",
+    "versionLabel": "1.5",
     "watchapp": {
         "watchface": true
     }

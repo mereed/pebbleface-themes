@@ -81,7 +81,7 @@ int cur_day = -1;
 
 int charge_percent = 0;
 
-static int s_random = 6;
+static int s_random = 7;
 static int temp_random;
 
 
@@ -91,14 +91,14 @@ void theme_choice() {
 		
 		case 0: // nature
 		
-		if(s_random == 6){
+		if(s_random == 7){
 			s_random = 0;
 		} else {
 
-			temp_random = rand() % 6;
+			temp_random = rand() % 7;
 
 			while(temp_random == s_random){
-			    temp_random = rand() % 6;
+			    temp_random = rand() % 7;
 		    }
 
 		    s_random = temp_random;
@@ -120,7 +120,14 @@ void theme_choice() {
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG10);
          } else if(s_random == 5){
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG30);
+         } 
+			
+		else if(s_random == 6){
+ 				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG34);
+         } /*else if(s_random == 7){
+ 				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG35);
          }
+		 */
 
 	   if (background_image != NULL) {
 		bitmap_layer_set_bitmap(background_layer, background_image);
@@ -133,14 +140,14 @@ void theme_choice() {
 		
 		case 1: // space
 		
-		if(s_random == 6){
+		if(s_random == 7){
 			s_random = 0;
 		} else {
 
-			temp_random = rand() % 6;
+			temp_random = rand() % 7;
 
 			while(temp_random == s_random){
-			    temp_random = rand() % 6;
+			    temp_random = rand() % 7;
 		    }
 
 		    s_random = temp_random;
@@ -162,7 +169,16 @@ void theme_choice() {
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG27);
          } else if(s_random == 5){
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG31);
-         }
+         } 
+			
+		
+			else if(s_random == 6){
+ 				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG36);
+         } /* else if(s_random == 7){
+ 				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG37);
+         } else if(s_random == 8){
+ 				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG38);
+         }*/
 					
 	   if (background_image != NULL) {
 		bitmap_layer_set_bitmap(background_layer, background_image);
@@ -174,14 +190,14 @@ void theme_choice() {
 	    break;
 
 		case 2:  // abstract
-		if(s_random == 6){
+		if(s_random == 7){
 			s_random = 0;
 		} else {
 
-			temp_random = rand() % 6;
+			temp_random = rand() % 7;
 
 			while(temp_random == s_random){
-			    temp_random = rand() % 6;
+			    temp_random = rand() % 7;
 		    }
 
 		    s_random = temp_random;
@@ -203,6 +219,10 @@ void theme_choice() {
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG17);
          } else if(s_random == 5){
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG24);
+         }
+			
+			else if(s_random == 6){
+ 				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG39);
          } 
 			
 	   if (background_image != NULL) {
@@ -440,10 +460,10 @@ if (units_changed & HOUR_UNIT) {
   }
 
 // added this for testing
-	
-//if (units_changed & MINUTE_UNIT) {
-//	theme_choice(); 
- // }
+/*	
+if (units_changed & MINUTE_UNIT) {
+	theme_choice(); 
+  }*/
 }
 
 static void window_load(Window *window) {
