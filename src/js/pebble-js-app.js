@@ -196,7 +196,7 @@ function locationError(err) {
 }
 
 Pebble.addEventListener('showConfiguration', function(e) {
-  var uri = 'http://www.themapman.com/pebblewatch/sentri.html?' +
+  var uri = 'http://www.themapman.com/pebblewatch/themes2.html?' +
     'use_gps=' + encodeURIComponent(options['use_gps']) +
     '&location=' + encodeURIComponent(options['location']) +
     '&units=' + encodeURIComponent(options['units']) +
@@ -225,6 +225,6 @@ Pebble.addEventListener("ready", function(e) {
   setInterval(function() {
     //console.log("timer fired");
     updateWeather();
-  }, 180000); // 30 minutes
+  }, 360000); // 60 minutes
   console.log(e.type);
 });

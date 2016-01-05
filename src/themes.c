@@ -74,7 +74,7 @@ TextLayer *temp_layer;
 TextLayer *condition_layer;
 
 static GFont time_font;
-static GFont date_font;
+//static GFont date_font;
 static GFont temp_font;
 
 int cur_day = -1;
@@ -120,11 +120,11 @@ void theme_choice() {
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG10);
          } else if(s_random == 5){
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG30);
+         } else if(s_random == 6){
+ 				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG34);
          } 
 			
-		else if(s_random == 6){
- 				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG34);
-         } /*else if(s_random == 7){
+			/*else if(s_random == 7){
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG35);
          }
 		 */
@@ -169,15 +169,13 @@ void theme_choice() {
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG27);
          } else if(s_random == 5){
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG31);
+         } 	else if(s_random == 6){
+ 				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG36);
          } 
 			
-		
-			else if(s_random == 6){
- 				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG36);
-         } /* else if(s_random == 7){
+			/* else if(s_random == 7){
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG37);
-         } else if(s_random == 8){
- 				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG38);
+
          }*/
 					
 	   if (background_image != NULL) {
@@ -219,11 +217,13 @@ void theme_choice() {
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG17);
          } else if(s_random == 5){
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG24);
-         }
-			
-			else if(s_random == 6){
+         } else if(s_random == 6){
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG39);
          } 
+			/* 
+			} else if(s_random == 7){
+ 				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG38);
+				*/
 			
 	   if (background_image != NULL) {
 		bitmap_layer_set_bitmap(background_layer, background_image);
@@ -234,14 +234,14 @@ void theme_choice() {
 	    break;
 		
 		case 3:  // shapes
-		if(s_random == 6){
+		if(s_random == 7){
 			s_random = 0;
 		} else {
 
-			temp_random = rand() % 6;
+			temp_random = rand() % 7;
 
 			while(temp_random == s_random){
-			    temp_random = rand() % 6;
+			    temp_random = rand() % 7;
 		    }
 
 		    s_random = temp_random;
@@ -261,9 +261,15 @@ void theme_choice() {
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG23);
          } else if(s_random == 4){
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG32);
-         }else if(s_random == 5){
+         } else if(s_random == 5){
  				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG33);
-         }
+         } else if(s_random == 6){
+ 				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG40);
+         } 
+				/* 
+			} else if(s_random == 7){
+ 				background_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BG38);
+				*/
 			
 	   if (background_image != NULL) {
 		bitmap_layer_set_bitmap(background_layer, background_image);
@@ -477,7 +483,7 @@ static void window_load(Window *window) {
 	// resources
 
 	time_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_REGULAR_44));
-    date_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_CUSTOM_16));
+  //  date_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_CUSTOM_16));
     temp_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_CUSTOM_17));
 	
     // layer position and alignment
@@ -501,11 +507,11 @@ static void window_load(Window *window) {
 #endif
 	
     text_layer_set_background_color(layer_date_text, GColorClear);
-    text_layer_set_font(layer_date_text, date_font);
+    text_layer_set_font(layer_date_text, temp_font);
     text_layer_set_background_color(layer_time_text, GColorClear);
     text_layer_set_font(layer_time_text, time_font);
     text_layer_set_background_color(layer_date_text2, GColorClear);
-    text_layer_set_font(layer_date_text2, date_font);
+    text_layer_set_font(layer_date_text2, temp_font);
     text_layer_set_background_color(layer_time_text2, GColorClear);
     text_layer_set_font(layer_time_text2, time_font);
 	
@@ -609,7 +615,7 @@ static void window_unload(Window *window) {
   text_layer_destroy( condition_layer );
 	
   fonts_unload_custom_font(time_font);
-  fonts_unload_custom_font(date_font);
+//  fonts_unload_custom_font(date_font);
   fonts_unload_custom_font(temp_font);
 	
   layer_remove_from_parent(window_layer);

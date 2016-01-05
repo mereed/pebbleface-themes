@@ -17,6 +17,75 @@
     "resources": {
         "media": [
             {
+                "file": "fonts/HelveticaNeue-Thin.otf",
+                "name": "FONT_CUSTOM_17",
+                "targetPlatforms": null,
+                "type": "font"
+            },
+            {
+                "file": "images/shapes7.png",
+                "name": "IMAGE_BG40",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
+                "file": "images/shapes6.png",
+                "name": "IMAGE_BG33",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
+                "file": "images/shapes5.png",
+                "name": "IMAGE_BG32",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
+                "file": "images/shapes4.png",
+                "name": "IMAGE_BG23",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
+                "file": "images/shapes3.png",
+                "name": "IMAGE_BG22",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
+                "file": "images/shapes2.png",
+                "name": "IMAGE_BG19",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
+                "file": "images/shapes1.png",
+                "name": "IMAGE_BG2",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
                 "file": "images/themes-menu.png",
                 "menuIcon": true,
                 "name": "IMAGE_MENU_ICON",
@@ -56,15 +125,6 @@
             {
                 "file": "images/abstract2.png",
                 "name": "IMAGE_BG14",
-                "targetPlatforms": [
-                    "basalt",
-                    "chalk"
-                ],
-                "type": "bitmap"
-            },
-            {
-                "file": "images/polygons6.png",
-                "name": "IMAGE_BG33",
                 "targetPlatforms": [
                     "basalt",
                     "chalk"
@@ -139,15 +199,6 @@
                 "type": "bitmap"
             },
             {
-                "file": "images/polygons5.png",
-                "name": "IMAGE_BG32",
-                "targetPlatforms": [
-                    "basalt",
-                    "chalk"
-                ],
-                "type": "bitmap"
-            },
-            {
                 "file": "images/abstract6.png",
                 "name": "IMAGE_BG24",
                 "targetPlatforms": [
@@ -173,16 +224,6 @@
                     "chalk"
                 ],
                 "type": "bitmap"
-            },
-            {
-                "file": "fonts/HelveticaNeue-Thin.otf",
-                "name": "FONT_CUSTOM_17",
-                "type": "font"
-            },
-            {
-                "file": "fonts/HelveticaNeue-Thin.otf",
-                "name": "FONT_CUSTOM_16",
-                "type": "font"
             },
             {
                 "characterRegex": "[0-9: ]",
@@ -228,35 +269,8 @@
                 "type": "bitmap"
             },
             {
-                "file": "images/polygons4.png",
-                "name": "IMAGE_BG23",
-                "targetPlatforms": [
-                    "basalt",
-                    "chalk"
-                ],
-                "type": "bitmap"
-            },
-            {
-                "file": "images/polygons3.png",
-                "name": "IMAGE_BG22",
-                "targetPlatforms": [
-                    "basalt",
-                    "chalk"
-                ],
-                "type": "bitmap"
-            },
-            {
                 "file": "images/space3.png",
                 "name": "IMAGE_BG20",
-                "targetPlatforms": [
-                    "basalt",
-                    "chalk"
-                ],
-                "type": "bitmap"
-            },
-            {
-                "file": "images/polygons2.png",
-                "name": "IMAGE_BG19",
                 "targetPlatforms": [
                     "basalt",
                     "chalk"
@@ -318,15 +332,6 @@
                 "type": "bitmap"
             },
             {
-                "file": "images/polygons1.png",
-                "name": "IMAGE_BG2",
-                "targetPlatforms": [
-                    "basalt",
-                    "chalk"
-                ],
-                "type": "bitmap"
-            },
-            {
                 "file": "images/space1.png",
                 "name": "IMAGE_BG1",
                 "targetPlatforms": [
@@ -379,7 +384,7 @@
         "chalk"
     ],
     "uuid": "a78f1062-c85b-466a-aa82-f43ced1e2837",
-    "versionLabel": "1.5",
+    "versionLabel": "1.7",
     "watchapp": {
         "watchface": true
     }
